@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<!--    <script>-->
+<!--        function send(){-->
+<!--            var formData=new formData();-->
+<!--            formData.append("img",document.getElementById("upload").files[0]);-->
+
+<!--            $.ajax({-->
+<!--                url:"/imgUpload",    //请求的url地址-->
+<!--                dataType:"json",   //返回格式为json-->
+<!--                async:false,//请求是否异步，默认为异步，这也是ajax重要特性-->
+<!--                data: formData,    //参数值-->
+<!--                type:"post",   //请求方式-->
+<!--                processData:false,-->
+<!--                contentType:false,-->
+<!--                beforeSend:function(){-->
+<!--                    //请求前的处理-->
+<!--                },-->
+<!--                success:function(req){-->
+<!--                    //请求成功时处理-->
+<!--                    $("#img_back").src(req.url);-->
+<!--                },-->
+<!--                complete:function(){-->
+<!--                    //请求完成的处理-->
+<!--                    alert("完成")-->
+<!--                },-->
+<!--                error:function(){-->
+<!--                    //请求出错处理-->
+<!--                    alert("异常")-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+    <form id="imgupload" action="/imgUpload" method="post" enctype="multipart/form-data">
+        <input type="file" name="img" id="upload"/>
+        <input type="submit" />
+    </form>
+</body>
+</html>

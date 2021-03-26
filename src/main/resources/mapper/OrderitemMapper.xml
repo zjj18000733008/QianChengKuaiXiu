@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wechatOrder.dao.OrderitemMapper" >
+
+    <insert id="saveOrderItem" parameterType="orderitem" useGeneratedKeys="true" keyProperty="id">
+        insert into orderitem ( order_id, specification_id, buynum,unit_price)
+        values(#{orderId},#{specificationId},#{buynum},#{unitPrice})
+    </insert>
+
+    <select id="queryOrderItemsByOrderId" parameterType="string" resultType="orderitem">
+        select * from orderitem where order_id=#{orderid}
+    </select>
+
+    <select id="queryAllOrderItemsByUserIdGroupByOrderIdForUser" parameterType="map" resultType="queryMyOrdersVo">
+        select o.goods_amount, o.freight_charge,o.actual_amount,o.state,oi.*,s.name,s.img,p.product_name
+        from qiancheng_repair.order o
+        inner join orderitem oi on o.id=oi.order_id
+        inner join specification s on s.id=oi.specification_id
+        inner join product p on s.product_id=p.id
+        where o.state not in (-1,-3) and user_id=#{userId}
+        group by order_id
+        limit ${index},${pageSize}
+    </select>
+
+    <resultMap id="BaseResultMap" type="wechatOrder.po.Orderitem" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+        <result column="specification_id" property="specificationId" jdbcType="INTEGER" />
+        <result column="buynum" property="buynum" jdbcType="INTEGER" />
+        <result column="unit_price" property="unitPrice" jdbcType="DOUBLE" />
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        id, order_id, specification_id, buynum, unit_price
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="wechatOrder.po.OrderitemExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from orderitem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from orderitem
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from orderitem
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="wechatOrder.po.OrderitemExample" >
+        delete from orderitem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="wechatOrder.po.Orderitem" >
+        insert into orderitem (id, order_id, specification_id,
+                               buynum, unit_price)
+        values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{specificationId,jdbcType=INTEGER},
+                #{buynum,jdbcType=INTEGER}, #{unitPrice,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" parameterType="wechatOrder.po.Orderitem" >
+        insert into orderitem
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="specificationId != null" >
+                specification_id,
+            </if>
+            <if test="buynum != null" >
+                buynum,
+            </if>
+            <if test="unitPrice != null" >
+                unit_price,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null" >
+                #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="specificationId != null" >
+                #{specificationId,jdbcType=INTEGER},
+            </if>
+            <if test="buynum != null" >
+                #{buynum,jdbcType=INTEGER},
+            </if>
+            <if test="unitPrice != null" >
+                #{unitPrice,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="wechatOrder.po.OrderitemExample" resultType="java.lang.Integer" >
+        select count(*) from orderitem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update orderitem
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderId != null" >
+                order_id = #{record.orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.specificationId != null" >
+                specification_id = #{record.specificationId,jdbcType=INTEGER},
+            </if>
+            <if test="record.buynum != null" >
+                buynum = #{record.buynum,jdbcType=INTEGER},
+            </if>
+            <if test="record.unitPrice != null" >
+                unit_price = #{record.unitPrice,jdbcType=DOUBLE},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update orderitem
+        set id = #{record.id,jdbcType=INTEGER},
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+        specification_id = #{record.specificationId,jdbcType=INTEGER},
+        buynum = #{record.buynum,jdbcType=INTEGER},
+        unit_price = #{record.unitPrice,jdbcType=DOUBLE}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="wechatOrder.po.Orderitem" >
+        update orderitem
+        <set >
+            <if test="orderId != null" >
+                order_id = #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="specificationId != null" >
+                specification_id = #{specificationId,jdbcType=INTEGER},
+            </if>
+            <if test="buynum != null" >
+                buynum = #{buynum,jdbcType=INTEGER},
+            </if>
+            <if test="unitPrice != null" >
+                unit_price = #{unitPrice,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="wechatOrder.po.Orderitem" >
+        update orderitem
+        set order_id = #{orderId,jdbcType=VARCHAR},
+            specification_id = #{specificationId,jdbcType=INTEGER},
+            buynum = #{buynum,jdbcType=INTEGER},
+            unit_price = #{unitPrice,jdbcType=DOUBLE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

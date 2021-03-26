@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--开启权限控制注解支持-->
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/repair/**" />
+            <mvc:exclude-mapping path="/repair/*/query"/>
+            <mvc:exclude-mapping path="/repair/*/get"/>
+
+            <bean class="wechatOrder.interceptor.StaffInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- -->
+    <bean id="charsetUtf8" class="java.nio.charset.Charset" factory-method="forName">
+
+        <constructor-arg value="UTF-8"/>
+    </bean>
+
+    <bean id="StringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg name="defaultCharset" ref="charsetUtf8"/>
+    </bean>
+
+    <!-- 校验器,配置validator-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationMessageSource" ref="validationMessageSource"/>
+    </bean>
+    <!--配置validationMessageSource-->
+    <bean id="validationMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 指定校验信息的资源文件的基本文件名称,不包括后缀,后缀默认是properties-->
+        <property name="basenames">
+            <list>
+                <value>classpath:config.validationMessageSource</value>
+            </list>
+        </property>
+        <!--指定文件的编码-->
+        <property name="fileEncodings" value="utf8"/>
+        <!-- 对资源文件内容缓存的时间,单位秒-->
+        <property name="cacheSeconds" value="120"/>
+    </bean>
+
+
+    <!--配置注解的映射器和适配器-->
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters>
+            <ref bean="StringHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <context:component-scan base-package="wechatOrder.controller,wechatOrder.config,wechatOrder.resolver"/>
+    <!--处理静态资源-->
+    <mvc:default-servlet-handler/>
+    <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置上传文件的最大尺寸为5MB-->
+        <property name="maxUploadSize">
+            <value>5242889</value>
+        </property>
+    </bean>
+    <!-- 在java代码中使用注解注入properties文件中相应的value值 -->
+    <bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <array>
+                <value>classpath:config/imgPath.properties</value>
+                <value>classpath:config/wx.properties</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--    <mvc:resources mapping="/jsp/**" location="/WEB-INF/jsp/" />-->
+</beans>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wechatOrder.dao.UserMapper">
+
+    <select id="getUserByOpenid" resultType="user" parameterType="string">
+        select * from user where openid=#{openid}
+    </select>
+
+<!--    <insert id="saveUser" parameterType="user">-->
+<!--        insert into user ( openid, gender, user_avatar, role_id, city, province, country, nickname,phone_number,session_key)-->
+<!--        values(#{openid},#{gender},#{userAvatar},#{roleId},#{city},#{province},#{country},#{nickName},#{phoneNumber},#{sessionKey})-->
+<!--    </insert>-->
+
+    <insert id="saveUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        insert into user(
+            <trim suffixOverrides=",">
+                <if test="openid!=null">
+                    openid,
+                </if>
+                <if test="gender!=null">
+                    gender,
+                </if>
+                <if test="userAvatar!=null">
+                    user_avatar,
+                </if>
+                <if test="roleId!=null">
+                    role_id,
+                </if>
+                <if test="city!=null">
+                    city,
+                </if>
+                <if test="province!=null">
+                    province,
+                </if>
+                <if test="country!=null">
+                    country,
+                </if>
+                <if test="nickname!=null">
+                    nickname,
+                </if>
+                <if test="phoneNumber!=null">
+                    phone_number,
+                </if>
+                <if test="sessionKey!=null">
+                    session_key,
+                </if>
+
+            </trim>
+        )values(
+                <trim suffixOverrides=",">
+                    <if test="openid!=null">
+                        #{openid},
+                    </if>
+                    <if test="gender!=null">
+                        #{gender},
+                    </if>
+                    <if test="userAvatar!=null">
+                        #{userAvatar},
+                    </if>
+                    <if test="roleId!=null">
+                        #{roleId},
+                    </if>
+                    <if test="city!=null">
+                        #{city},
+                    </if>
+                    <if test="province!=null">
+                        #{province},
+                    </if>
+                    <if test="country!=null">
+                        #{country},
+                    </if>
+                    <if test="nickname!=null">
+                        #{nickname},
+                    </if>
+                    <if test="phoneNumber!=null">
+                        #{phoneNumber},
+                    </if>
+                    <if test="sessionKey!=null">
+                        #{sessionKey},
+                    </if>
+                </trim>
+        )
+    </insert>
+
+    <update id="updateUserByOpenid" parameterType="user">
+        update user set
+            <trim suffixOverrides=",">
+                <if test="gender!=null and gender!=''">
+                    gender=#{gender},
+                </if>
+                <if test="userAvatar!=null and userAvatar!=''">
+                    user_avatar=#{userAvatar},
+                </if>
+                <if test="roleId!=null">
+                    role_id=#{roleId},
+                </if>
+                <if test="city!=null and city!=''">
+                    city=#{city},
+                </if>
+                <if test="province!=null and province!=''">
+                    province=#{province},
+                </if>
+                <if test="country!=null and country!=''">
+                    country=#{country},
+                </if>
+                <if test="nickname!=null and nickname!=''">
+                    nickname=#{nickname},
+                </if>
+                <if test="phoneNumber!=null and phoneNumber!=''">
+                    phone_number=#{phoneNumber},
+                </if>
+                <if test="sessionKey!=null and sessionKey!=''">
+                    session_key=#{sessionKey},
+                </if>
+            </trim>
+        where openid=#{openid}
+    </update>
+</mapper>

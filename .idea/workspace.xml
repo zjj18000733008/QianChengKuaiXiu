@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="QianChengKuaiXiu:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dad0ab2e-2e95-4b8f-af1d-3e207e74914c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/wechatOrder/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/wechatOrder/controller/UserController.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="wechatOrder" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/WorkingSoft/apache-maven-3.6.2" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1U0e6DSDPkGXBwi9D9rc7DPRRqL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="D:/IDEA项目/algorithm" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\wechatOrder\src\main\resources\mapper" />
+      <recent name="E:\wechatOrder\src\main\webapp\pages" />
+      <recent name="E:\wechatOrder\src\main\webapp\img" />
+      <recent name="E:\wechatOrder\src\main\webapp" />
+      <recent name="E:\wechatOrder\src\main\webapp\jsp" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="wechatOrder.service.impl" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="wechatOrder.dao" />
+      <recent name="wechatOrder.po" />
+      <recent name="wechatOrder.service.impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\QianChengKuaiXiu\src\main\resources\mapper" />
+      <recent name="E:\QianChengKuaiXiu\src\main\java\wechatOrder\po" />
+      <recent name="E:\QianChengKuaiXiu\src\main\webapp\pages" />
+      <recent name="E:\QianChengKuaiXiu\src\main\java\wechatOrder\dao" />
+      <recent name="E:\wechatOrder\src\main\webapp\pages" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="maven" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.wechatOrder">
+    <configuration name="TestForEverything.test5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qiancheng" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestForEverything" />
+      <option name="METHOD_NAME" value="test5" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestForEverything.test6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qiancheng" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestForEverything" />
+      <option name="METHOD_NAME" value="test6" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestForEverything.test7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qiancheng" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestForEverything" />
+      <option name="METHOD_NAME" value="test7" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestForEverything.test8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qiancheng" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestForEverything" />
+      <option name="METHOD_NAME" value="test8" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestForEverything.test9" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qiancheng" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestForEverything" />
+      <option name="METHOD_NAME" value="test9" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="wechatOrder [clean,tomcat7:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="wechatOrder" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.45" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="D:\WorkingSoft\JDK8\jre">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="QianChengKuaiXiu:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/qiancheng" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_wechatOrder" />
+        <option name="DEPLOY_TOMCAT_APPS" value="true" />
+        <option name="HTTP_PORT" value="80" />
+      </server-settings>
+      <output_file path="%IDEA_RUN:TOMCAT_HOME%/logs" is_save="true" />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="javadebug" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+        <EnvironmentVariables>
+          <option name="NAME" value="JAVA_OPTS" />
+          <option name="VALUE" value="-Dfile.encoding=UTF-8" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
+        <EnvironmentVariables>
+          <option name="NAME" value="JAVA_TOOL-OPTIONS" />
+          <option name="VALUE" value="-Dfile.encoding=UTF-8" />
+          <option name="IS_PREDEFINED" value="false" />
+        </EnvironmentVariables>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="QianChengKuaiXiu:war exploded" />
+          <artifact name="qianchengkuaixiu" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TestForEverything.test5" />
+      <item itemvalue="JUnit.TestForEverything.test6" />
+      <item itemvalue="JUnit.TestForEverything.test7" />
+      <item itemvalue="JUnit.TestForEverything.test8" />
+      <item itemvalue="JUnit.TestForEverything.test9" />
+      <item itemvalue="Maven.wechatOrder [clean,tomcat7:run]" />
+      <item itemvalue="Tomcat Server.wechatOrder" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestForEverything.test9" />
+        <item itemvalue="JUnit.TestForEverything.test8" />
+        <item itemvalue="JUnit.TestForEverything.test7" />
+        <item itemvalue="JUnit.TestForEverything.test6" />
+        <item itemvalue="JUnit.TestForEverything.test5" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\0\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dad0ab2e-2e95-4b8f-af1d-3e207e74914c" name="Default Changelist" comment="" />
+      <created>1574497762742</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574497762742</updated>
+      <workItem from="1574497765362" duration="1462000" />
+      <workItem from="1574586073894" duration="1919000" />
+      <workItem from="1574588010279" duration="4541000" />
+      <workItem from="1574640097841" duration="1789000" />
+      <workItem from="1574676694051" duration="9250000" />
+      <workItem from="1574727077922" duration="18145000" />
+      <workItem from="1574765886104" duration="2514000" />
+      <workItem from="1574768755930" duration="3852000" />
+      <workItem from="1574778861161" duration="1559000" />
+      <workItem from="1574813665036" duration="6227000" />
+      <workItem from="1574827618972" duration="1078000" />
+      <workItem from="1580364151229" duration="2910000" />
+      <workItem from="1580534472194" duration="17935000" />
+      <workItem from="1580557536714" duration="9212000" />
+      <workItem from="1580613431048" duration="28582000" />
+      <workItem from="1580645550612" duration="1576000" />
+      <workItem from="1580709570177" duration="33390000" />
+      <workItem from="1580793599272" duration="20697000" />
+      <workItem from="1580874517715" duration="960000" />
+      <workItem from="1580875532076" duration="15767000" />
+      <workItem from="1580966454041" duration="2171000" />
+      <workItem from="1580968664693" duration="15050000" />
+      <workItem from="1581053011983" duration="19249000" />
+      <workItem from="1581140826275" duration="18582000" />
+      <workItem from="1581225875809" duration="21247000" />
+      <workItem from="1581276241148" duration="2689000" />
+      <workItem from="1581313694155" duration="17740000" />
+      <workItem from="1581340880814" duration="6657000" />
+      <workItem from="1581396048106" duration="8398000" />
+      <workItem from="1581433481430" duration="2904000" />
+      <workItem from="1581488599808" duration="5034000" />
+      <workItem from="1581501100853" duration="8417000" />
+      <workItem from="1581573254452" duration="29333000" />
+      <workItem from="1581657013588" duration="33620000" />
+      <workItem from="1581762496570" duration="20202000" />
+      <workItem from="1581933069632" duration="654000" />
+      <workItem from="1582181928381" duration="1165000" />
+      <workItem from="1582183164921" duration="932000" />
+      <workItem from="1582449486572" duration="3737000" />
+      <workItem from="1582613611871" duration="11997000" />
+      <workItem from="1582960090034" duration="6562000" />
+      <workItem from="1583481302100" duration="3198000" />
+      <workItem from="1583663095794" duration="4583000" />
+      <workItem from="1583717946903" duration="3492000" />
+      <workItem from="1584864782040" duration="8245000" />
+      <workItem from="1584878454430" duration="1746000" />
+      <workItem from="1584951881752" duration="1033000" />
+      <workItem from="1584960481614" duration="4441000" />
+      <workItem from="1585448109123" duration="9773000" />
+      <workItem from="1585532939620" duration="5728000" />
+      <workItem from="1585591761900" duration="6629000" />
+      <workItem from="1585716140451" duration="1512000" />
+      <workItem from="1585895422082" duration="3570000" />
+      <workItem from="1586067535065" duration="12256000" />
+      <workItem from="1586212688391" duration="1719000" />
+      <workItem from="1586585927653" duration="9300000" />
+      <workItem from="1586937492153" duration="4410000" />
+      <workItem from="1587040532876" duration="622000" />
+      <workItem from="1588003840006" duration="8781000" />
+      <workItem from="1589719134498" duration="1329000" />
+      <workItem from="1589728668568" duration="64000" />
+      <workItem from="1597325512568" duration="121000" />
+      <workItem from="1598841746919" duration="106000" />
+      <workItem from="1599184689169" duration="750000" />
+      <workItem from="1602760956854" duration="2839000" />
+      <workItem from="1602815393949" duration="1818000" />
+      <workItem from="1605273393554" duration="1566000" />
+      <workItem from="1615353010152" duration="2211000" />
+      <workItem from="1615425960581" duration="2914000" />
+      <workItem from="1615524584308" duration="2316000" />
+      <workItem from="1615866898433" duration="1601000" />
+      <workItem from="1616148573249" duration="3769000" />
+      <workItem from="1616679865547" duration="673000" />
+      <workItem from="1616762011611" duration="3522000" />
+    </task>
+    <task id="LOCAL-00001">
+      <created>1581434621643</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581434621643</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar!/org/springframework/security/authentication/ProviderManager.class</url>
+          <line>55</line>
+          <properties class="org.springframework.security.authentication.ProviderManager" method="authenticate">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.4.RELEASE/spring-security-web-4.2.4.RELEASE.jar!/org/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.class</url>
+          <line>135</line>
+          <properties class="org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter" method="setFilterProcessesUrl">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.4.RELEASE/spring-security-web-4.2.4.RELEASE.jar!/org/springframework/security/web/context/SecurityContextPersistenceFilter.class</url>
+          <line>33</line>
+          <properties class="org.springframework.security.web.context.SecurityContextPersistenceFilter" method="doFilter">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar!/org/springframework/security/access/prepost/PrePostAnnotationSecurityMetadataSource.class</url>
+          <line>20</line>
+          <properties class="org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar!/org/springframework/security/access/prepost/PrePostAnnotationSecurityMetadataSource.class</url>
+          <line>24</line>
+          <properties class="org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource" method="getAttributes">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar!/org/springframework/security/access/prepost/PrePostAnnotationSecurityMetadataSource.class</url>
+          <line>59</line>
+          <properties class="org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource" method="getAllConfigAttributes">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar!/org/springframework/security/access/prepost/PrePostAnnotationSecurityMetadataSource.class</url>
+          <line>63</line>
+          <properties class="org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource" method="findAnnotation">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/4.2.4.RELEASE/spring-security-web-4.2.4.RELEASE.jar!/org/springframework/security/web/context/SecurityContextPersistenceFilter.class</url>
+          <line>30</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPool.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/wechatOrder/controller/ProductController.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

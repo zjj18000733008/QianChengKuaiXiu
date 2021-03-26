@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wechatOrder.dao.OrderMapper" >
+
+    <insert id="saveOrder" parameterType="orderVO">
+        insert into qiancheng_repair.order (id,user_id,address_id, pattern, payment_method, leave_word,
+                           <if test="servicingTime!=null and servicingTime!=''">
+                               servicing_time,
+                           </if>
+                           goods_amount, freight_charge, actual_amount, order_time,state)
+        values(#{id},#{userId},#{addressId},#{pattern},#{paymentMethod},#{leaveWord}
+            <if test="servicingTime!=null and servicingTime!=''">
+                ,#{servicingTime}
+            </if>
+        ,#{goodsAmount},#{freightCharge},#{actualAmount},#{orderTime},#{state})
+    </insert>
+
+    <update id="updateOrderById" parameterType="order">
+        update `order` set
+                <trim suffixOverrides=",">
+                    <if test="state!=null and state!=''">
+                        state=#{state},
+                    </if>
+                    <if test="addressId!=null">
+                        address_id=#{addressId},
+                    </if>
+                    <if test="payTime!=null and payTime!=''">
+                        pay_time=#{payTime},
+                    </if>
+                    <if test="orderTime!=null and orderTime!=''">
+                        order_time=#{orderTime}
+                    </if>
+                </trim>
+        where id= #{id}
+    </update>
+
+    <select id="queryAllOrdersWithAddress" parameterType="map" resultType="queryOrdersForStaffVo">
+        select o.* ,a.receiver_name receiverName,a.mobile mobile,a.area area,a.street_address streetAddress
+        from qiancheng_repair.order o
+        inner join address a
+        on o.address_id=a.id
+        <where>
+            <trim suffixOverrides="and">
+                <if test="order.pattern!=null and order.pattern !=''">
+                    pattern =#{order.pattern} and
+                </if>
+                <if test="order.state!=null and order.state!=''">
+                    o.state =#{order.state} and
+                </if>
+                <if test="order.userId!=null">
+                    o.user_id=#{order.userId} and
+                </if>
+                <if test="order.deliverymanId!=null">
+                    o.deliveryman_id=#{order.deliverymanId} and
+                </if>
+            </trim>
+        </where>
+        <if test="orderby!=null and orderby!=''">
+            <foreach collection="orderby" item="orderbyy" separator="," open=" order by ">
+                ${orderbyy}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getOrderWithAddressByOrderId" parameterType="string" resultType="queryOrdersForStaffVo">
+        select o.* ,a.receiver_name receiverName,a.mobile mobile,a.area area,a.street_address streetAddress
+        from qiancheng_repair.order o
+        inner join address a
+        on o.address_id=a.id
+        where o.id=#{orderId}
+    </select>
+
+    <select id="queryAllOrdersByUserIdForUser"  >
+        select * from qiancheng_repair.order
+        where user_id=#{userId} and state not in(-1,-3)
+    </select>
+
+    <select id="getOrderById" parameterType="string" resultType="order">
+        select * from qiancheng_repair.order where id=#{id}
+    </select>
+    <resultMap id="BaseResultMap" type="wechatOrder.po.Order" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="deliveryman_id" property="deliverymanId" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="address_id" property="addressId" jdbcType="INTEGER" />
+        <result column="pattern" property="pattern" jdbcType="CHAR" />
+        <result column="payment_method" property="paymentMethod" jdbcType="VARCHAR" />
+        <result column="leave_word" property="leaveWord" jdbcType="VARCHAR" />
+        <result column="servicing_time" property="servicingTime" jdbcType="VARCHAR" />
+        <result column="goods_amount" property="goodsAmount" jdbcType="DOUBLE" />
+        <result column="freight_charge" property="freightCharge" jdbcType="DOUBLE" />
+        <result column="actual_amount" property="actualAmount" jdbcType="DOUBLE" />
+        <result column="order_time" property="orderTime" jdbcType="VARCHAR" />
+        <result column="pay_time" property="payTime" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="CHAR" />
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        id, deliveryman_id, user_id, address_id, pattern, payment_method, leave_word, servicing_time,
+    goods_amount, freight_charge, actual_amount, order_time, pay_time, state
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="wechatOrder.po.OrderExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from qiancheng_repair.order
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from qiancheng_repair.order
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from qiancheng_repair.order
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="wechatOrder.po.OrderExample" >
+        delete from qiancheng_repair.order
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="wechatOrder.po.Order" >
+        insert into qiancheng_repair.order (id, deliveryman_id, user_id,
+                           address_id, pattern, payment_method,
+                           leave_word, servicing_time, goods_amount,
+                           freight_charge, actual_amount, order_time,
+                           pay_time, state)
+        values (#{id,jdbcType=VARCHAR}, #{deliverymanId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+                #{addressId,jdbcType=INTEGER}, #{pattern,jdbcType=CHAR}, #{paymentMethod,jdbcType=VARCHAR},
+                #{leaveWord,jdbcType=VARCHAR}, #{servicingTime,jdbcType=VARCHAR}, #{goodsAmount,jdbcType=DOUBLE},
+                #{freightCharge,jdbcType=DOUBLE}, #{actualAmount,jdbcType=DOUBLE}, #{orderTime,jdbcType=VARCHAR},
+                #{payTime,jdbcType=VARCHAR}, #{state,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="wechatOrder.po.Order" >
+        insert into qiancheng_repair.order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="deliverymanId != null" >
+                deliveryman_id,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="addressId != null" >
+                address_id,
+            </if>
+            <if test="pattern != null" >
+                pattern,
+            </if>
+            <if test="paymentMethod != null" >
+                payment_method,
+            </if>
+            <if test="leaveWord != null" >
+                leave_word,
+            </if>
+            <if test="servicingTime != null" >
+                servicing_time,
+            </if>
+            <if test="goodsAmount != null" >
+                goods_amount,
+            </if>
+            <if test="freightCharge != null" >
+                freight_charge,
+            </if>
+            <if test="actualAmount != null" >
+                actual_amount,
+            </if>
+            <if test="orderTime != null" >
+                order_time,
+            </if>
+            <if test="payTime != null" >
+                pay_time,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="deliverymanId != null" >
+                #{deliverymanId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addressId != null" >
+                #{addressId,jdbcType=INTEGER},
+            </if>
+            <if test="pattern != null" >
+                #{pattern,jdbcType=CHAR},
+            </if>
+            <if test="paymentMethod != null" >
+                #{paymentMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="leaveWord != null" >
+                #{leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="servicingTime != null" >
+                #{servicingTime,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsAmount != null" >
+                #{goodsAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="freightCharge != null" >
+                #{freightCharge,jdbcType=DOUBLE},
+            </if>
+            <if test="actualAmount != null" >
+                #{actualAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="orderTime != null" >
+                #{orderTime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null" >
+                #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="wechatOrder.po.OrderExample" resultType="java.lang.Integer" >
+        select count(*) from qiancheng_repair.order
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update qiancheng_repair.order
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deliverymanId != null" >
+                deliveryman_id = #{record.deliverymanId,jdbcType=INTEGER},
+            </if>
+            <if test="record.userId != null" >
+                user_id = #{record.userId,jdbcType=INTEGER},
+            </if>
+            <if test="record.addressId != null" >
+                address_id = #{record.addressId,jdbcType=INTEGER},
+            </if>
+            <if test="record.pattern != null" >
+                pattern = #{record.pattern,jdbcType=CHAR},
+            </if>
+            <if test="record.paymentMethod != null" >
+                payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="record.leaveWord != null" >
+                leave_word = #{record.leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="record.servicingTime != null" >
+                servicing_time = #{record.servicingTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.goodsAmount != null" >
+                goods_amount = #{record.goodsAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="record.freightCharge != null" >
+                freight_charge = #{record.freightCharge,jdbcType=DOUBLE},
+            </if>
+            <if test="record.actualAmount != null" >
+                actual_amount = #{record.actualAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="record.orderTime != null" >
+                order_time = #{record.orderTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payTime != null" >
+                pay_time = #{record.payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.state != null" >
+                state = #{record.state,jdbcType=CHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update qiancheng_repair.order
+        set id = #{record.id,jdbcType=VARCHAR},
+        deliveryman_id = #{record.deliverymanId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=INTEGER},
+        address_id = #{record.addressId,jdbcType=INTEGER},
+        pattern = #{record.pattern,jdbcType=CHAR},
+        payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+        leave_word = #{record.leaveWord,jdbcType=VARCHAR},
+        servicing_time = #{record.servicingTime,jdbcType=VARCHAR},
+        goods_amount = #{record.goodsAmount,jdbcType=DOUBLE},
+        freight_charge = #{record.freightCharge,jdbcType=DOUBLE},
+        actual_amount = #{record.actualAmount,jdbcType=DOUBLE},
+        order_time = #{record.orderTime,jdbcType=VARCHAR},
+        pay_time = #{record.payTime,jdbcType=VARCHAR},
+        state = #{record.state,jdbcType=CHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="wechatOrder.po.Order" >
+        update qiancheng_repair.order
+        <set >
+            <if test="deliverymanId != null" >
+                deliveryman_id = #{deliverymanId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null" >
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="addressId != null" >
+                address_id = #{addressId,jdbcType=INTEGER},
+            </if>
+            <if test="pattern != null" >
+                pattern = #{pattern,jdbcType=CHAR},
+            </if>
+            <if test="paymentMethod != null" >
+                payment_method = #{paymentMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="leaveWord != null" >
+                leave_word = #{leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="servicingTime != null" >
+                servicing_time = #{servicingTime,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsAmount != null" >
+                goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="freightCharge != null" >
+                freight_charge = #{freightCharge,jdbcType=DOUBLE},
+            </if>
+            <if test="actualAmount != null" >
+                actual_amount = #{actualAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="orderTime != null" >
+                order_time = #{orderTime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null" >
+                pay_time = #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="wechatOrder.po.Order" >
+        update qiancheng_repair.order
+        set deliveryman_id = #{deliverymanId,jdbcType=INTEGER},
+            user_id = #{userId,jdbcType=INTEGER},
+            address_id = #{addressId,jdbcType=INTEGER},
+            pattern = #{pattern,jdbcType=CHAR},
+            payment_method = #{paymentMethod,jdbcType=VARCHAR},
+            leave_word = #{leaveWord,jdbcType=VARCHAR},
+            servicing_time = #{servicingTime,jdbcType=VARCHAR},
+            goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+            freight_charge = #{freightCharge,jdbcType=DOUBLE},
+            actual_amount = #{actualAmount,jdbcType=DOUBLE},
+            order_time = #{orderTime,jdbcType=VARCHAR},
+            pay_time = #{payTime,jdbcType=VARCHAR},
+            state = #{state,jdbcType=CHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

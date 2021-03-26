@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wechatOrder.dao.HomepagePictureMapper" >
+  <resultMap id="BaseResultMap" type="wechatOrder.po.HomepagePicture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="create_data" property="createData" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="wechatOrder.po.HomepagePicture" extends="BaseResultMap" >
+    <result column="url" property="url" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, state, type, product_id, create_data
+  </sql>
+  <sql id="Blob_Column_List" >
+    url
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="wechatOrder.po.HomepagePictureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from homepage_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="wechatOrder.po.HomepagePictureExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from homepage_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from homepage_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from homepage_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="wechatOrder.po.HomepagePictureExample" >
+    delete from homepage_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="wechatOrder.po.HomepagePicture" >
+    insert into homepage_picture (id, state, type, product_id, 
+      create_data, url)
+    values (#{id,jdbcType=INTEGER}, #{state,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{productId,jdbcType=INTEGER}, 
+      #{createData,jdbcType=VARCHAR}, #{url,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="wechatOrder.po.HomepagePicture" >
+    insert into homepage_picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="createData != null" >
+        create_data,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="createData != null" >
+        #{createData,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="wechatOrder.po.HomepagePictureExample" resultType="java.lang.Integer" >
+    select count(*) from homepage_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update homepage_picture
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=CHAR},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createData != null" >
+        create_data = #{record.createData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update homepage_picture
+    set id = #{record.id,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=CHAR},
+      type = #{record.type,jdbcType=CHAR},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      create_data = #{record.createData,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update homepage_picture
+    set id = #{record.id,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=CHAR},
+      type = #{record.type,jdbcType=CHAR},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      create_data = #{record.createData,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="wechatOrder.po.HomepagePicture" >
+    update homepage_picture
+    <set >
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="createData != null" >
+        create_data = #{createData,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wechatOrder.po.HomepagePicture" >
+    update homepage_picture
+    set state = #{state,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      create_data = #{createData,jdbcType=VARCHAR},
+      url = #{url,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wechatOrder.po.HomepagePicture" >
+    update homepage_picture
+    set state = #{state,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      create_data = #{createData,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

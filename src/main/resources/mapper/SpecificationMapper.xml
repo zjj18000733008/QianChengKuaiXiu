@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wechatOrder.dao.SpecificationMapper" >
+
+    <insert id="saveSpecification" parameterType="specification">
+        insert into specification ( name,product_id, original_price, current_price,inventory, img,state)
+        values (#{name},#{productId},#{originalPrice},#{currentPrice},#{inventory},#{img},#{state})
+    </insert>
+
+    <!-- 根据购物车中某种规格商品的id来查询出其相关的部分信息 -->
+    <select id="getSpecificationToCartById" parameterType="int" resultType="cartItem">
+        select s.product_id productId,s.id specificationId,s.img specificationImg,s.current_price unitPrice,p.product_name productName,p.type_id typeId,s.name specificationName
+        from specification s
+                 inner join product p
+                            on s.product_id=p.id
+        where s.id=#{id}
+    </select>
+
+    <select id="getSpecificationById" parameterType="int" resultType="specification">
+        select * from specification where id=#{id}
+    </select>
+
+    <update id="updateSpecificationById" parameterType="specification">
+        update specification set
+        <trim suffixOverrides=",">
+            <if test="name!=null and name!=''">
+                name=#{name},
+            </if>
+            <if test="originalPrice!=null">
+                original_price=#{originalPrice},
+            </if>
+            <if test="currentPrice!=null">
+                current_price=#{currentPrice},
+            </if>
+            <if test="inventory!=null">
+                inventory=#{inventory},
+            </if>
+            <if test="img!=null and img!=''">
+                img=#{img},
+            </if>
+            <if test="state!=null and state!=''">
+                state=#{state},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <!--根据商品id查询出对应的规格商品信息(不包括已被"删除"的商品)-->
+    <select id="queryByProductId" parameterType="int" resultType="specification">
+        select * from specification where product_id=#{id} and state in('1','0');
+    </select>
+
+    <delete id="deleteSpecification" parameterType="int">
+        delete from specification where id=#{id}
+    </delete>
+
+    <resultMap id="BaseResultMap" type="wechatOrder.po.Specification" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="original_price" property="originalPrice" jdbcType="DOUBLE" />
+        <result column="current_price" property="currentPrice" jdbcType="DOUBLE" />
+        <result column="inventory" property="inventory" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="CHAR" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="wechatOrder.po.Specification" extends="BaseResultMap" >
+        <result column="img" property="img" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        id, name, product_id, original_price, current_price, inventory, state
+    </sql>
+    <sql id="Blob_Column_List" >
+        img
+    </sql>
+    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="wechatOrder.po.SpecificationExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from specification
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="wechatOrder.po.SpecificationExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from specification
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from specification
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from specification
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="wechatOrder.po.SpecificationExample" >
+        delete from specification
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="wechatOrder.po.Specification" >
+        insert into specification (id, name, product_id,
+                                   original_price, current_price, inventory,
+                                   state, img)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER},
+                #{originalPrice,jdbcType=DOUBLE}, #{currentPrice,jdbcType=DOUBLE}, #{inventory,jdbcType=INTEGER},
+                #{state,jdbcType=CHAR}, #{img,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="wechatOrder.po.Specification" >
+        insert into specification
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="productId != null" >
+                product_id,
+            </if>
+            <if test="originalPrice != null" >
+                original_price,
+            </if>
+            <if test="currentPrice != null" >
+                current_price,
+            </if>
+            <if test="inventory != null" >
+                inventory,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+            <if test="img != null" >
+                img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null" >
+                #{originalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="currentPrice != null" >
+                #{currentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="inventory != null" >
+                #{inventory,jdbcType=INTEGER},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="img != null" >
+                #{img,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="wechatOrder.po.SpecificationExample" resultType="java.lang.Integer" >
+        select count(*) from specification
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update specification
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.name != null" >
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.productId != null" >
+                product_id = #{record.productId,jdbcType=INTEGER},
+            </if>
+            <if test="record.originalPrice != null" >
+                original_price = #{record.originalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="record.currentPrice != null" >
+                current_price = #{record.currentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="record.inventory != null" >
+                inventory = #{record.inventory,jdbcType=INTEGER},
+            </if>
+            <if test="record.state != null" >
+                state = #{record.state,jdbcType=CHAR},
+            </if>
+            <if test="record.img != null" >
+                img = #{record.img,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map" >
+        update specification
+        set id = #{record.id,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
+        product_id = #{record.productId,jdbcType=INTEGER},
+        original_price = #{record.originalPrice,jdbcType=DOUBLE},
+        current_price = #{record.currentPrice,jdbcType=DOUBLE},
+        inventory = #{record.inventory,jdbcType=INTEGER},
+        state = #{record.state,jdbcType=CHAR},
+        img = #{record.img,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update specification
+        set id = #{record.id,jdbcType=INTEGER},
+        name = #{record.name,jdbcType=VARCHAR},
+        product_id = #{record.productId,jdbcType=INTEGER},
+        original_price = #{record.originalPrice,jdbcType=DOUBLE},
+        current_price = #{record.currentPrice,jdbcType=DOUBLE},
+        inventory = #{record.inventory,jdbcType=INTEGER},
+        state = #{record.state,jdbcType=CHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="wechatOrder.po.Specification" >
+        update specification
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null" >
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null" >
+                original_price = #{originalPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="currentPrice != null" >
+                current_price = #{currentPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="inventory != null" >
+                inventory = #{inventory,jdbcType=INTEGER},
+            </if>
+            <if test="state != null" >
+                state = #{state,jdbcType=CHAR},
+            </if>
+            <if test="img != null" >
+                img = #{img,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="wechatOrder.po.Specification" >
+        update specification
+        set name = #{name,jdbcType=VARCHAR},
+            product_id = #{productId,jdbcType=INTEGER},
+            original_price = #{originalPrice,jdbcType=DOUBLE},
+            current_price = #{currentPrice,jdbcType=DOUBLE},
+            inventory = #{inventory,jdbcType=INTEGER},
+            state = #{state,jdbcType=CHAR},
+            img = #{img,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="wechatOrder.po.Specification" >
+        update specification
+        set name = #{name,jdbcType=VARCHAR},
+            product_id = #{productId,jdbcType=INTEGER},
+            original_price = #{originalPrice,jdbcType=DOUBLE},
+            current_price = #{currentPrice,jdbcType=DOUBLE},
+            inventory = #{inventory,jdbcType=INTEGER},
+            state = #{state,jdbcType=CHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

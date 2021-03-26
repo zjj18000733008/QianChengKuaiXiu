@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QianChengKuaiXiu:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>QianChengKuaiXiu</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="wechatOrder-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="QianChengKuaiXiu:war exploded" />
+    </root>
+  </artifact>
+</component>
